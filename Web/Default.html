@@ -1,0 +1,628 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CRDS5医院信息系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- font-awesome -->
+    <link href="Content/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="main-ui.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+        <script src="Script/html5shiv.min.js"></script>
+        <script src="Script/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="main-layout main-side-shrink" id="mainApp">
+        <!--顶部导航-->
+        <div class="main-header">
+            <!--左侧选项-->
+            <ul class="main-nav main-layout-left">
+                <li class="main-nav-item main-flexible" lay-unselect="">
+                    <a class="main-nav-tri" href="javascript:;" main-event="shrinkMenu" title="侧边伸缩" hidefocus="true">
+                        <i class="fa fa-angle-double-right" style="font-size:18px;"></i>
+                    </a>
+                </li>
+                <li class="main-nav-item visible-sm">
+                    <a class="main-nav-tri" href="javascript:;" main-event="refresh" hidefocus="true" title="刷新（F5）">
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                </li>
+                <li class="main-nav-item visible-sm">
+                    <a class="main-nav-tri" href="javascript:;" main-event="fullScreen" hidefocus="true" title="全屏（F11）">
+                        <i class="fa fa-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+            <!--右侧固定-->
+            <ul class="main-nav main-layout-right" lay-filter="main-layout-right">
+                <li class="main-nav-item">
+                    <a class="main-nav-tri" href="javascript:;" hidefocus="true" class="main-nav-user">
+                        <cite>信息科</cite>
+                        <span class="main-nav-more"></span>
+                    </a>
+                    <dl class="main-nav-child main-person-panel">
+                        <dd><a href="javascript:;" main-event="userInfo" hidefocus="true">基本资料</a></dd>
+                        <dd><a href="javascript:;" main-event="changePwd" hidefocus="true">修改密码</a></dd><hr>
+                        <dd><a href="javascript:;" main-event="logout" hidefocus="true">退出</a></dd>
+                    </dl>
+                </li>
+                <li class="main-nav-item visible-sm">
+                    <a class="main-nav-tri" href="javascript:;" main-event="helper" hidefocus="true" title="Ctrl + F12">
+                        <i class="fa fa-file-text-o"></i>
+                        <cite class="visible-sm">帮助中心</cite>
+                    </a>
+                </li>
+                <li class="main-nav-item flexible-hide-xs">
+                    <a class="main-nav-tri" href="javascript:;" main-event="message" hidefocus="true">
+                        <i class="fa fa-bell-o"></i>
+                        <cite class="visible-sm">消息中心</cite>
+                        <span class="main-badge-dot"></span>
+                    </a>
+                </li>
+                <li class="main-nav-item flexible-hide-xs">
+                    <a class="main-nav-tri" href="javascript:;" main-event="changeDept" hidefocus="true">
+                        <i class="fa fa-windows"></i>
+                        <cite class="visible-sm">管理员</cite>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!--左侧菜单-->
+        <div class="main-side main-bg-black">
+            <div class="main-side-scroll" style="overflow:hidden">
+                <div class="main-logo">
+                    <i class="font">CRDS</i>
+                    <span class="logo"></span>
+                </div>
+                <ul class="main-nav main-nav-tree">
+                    <!--服务端生成菜单html-->
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 50px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="99004014" data-href="W_EMR/AspCode/GuiDang/GuiDangFrame.aspx" data-tab="病历归档" title="病历归档" hidefocus="true">病历归档</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="00020223" data-href="W_EMR/AspCode/Templater/IE8Fxied.html?laiyuan=zhuyuan" data-tab="住院病历模板管理" title="住院病历模板管理" hidefocus="true">住院病历模板管理</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="99004067" data-href="W_EMR/AspCode/Editor/LingChuang/HuLiJiLu/HuLiJiLu_Header.aspx" data-tab="护理单参数表头设置" title="护理单参数表头设置" hidefocus="true">护理单参数表头设置</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="99004066" data-href="W_EMR/AspCode/Editor/LingChuang/HuLiJiLu/HuLiJiLu_Config.aspx" data-tab="护理单参数设置" title="护理单参数设置" hidefocus="true">护理单参数设置</a></li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-file-text-o"></i><cite>电子病历</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 95px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="00016400" data-href="OA/CanShuManage/CanShuManage.aspx" data-tab="OA参数管理" title="OA参数管理" hidefocus="true">OA参数管理</a></li>
+                                <li class="main-menu-item main-menu-itemed main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">车辆管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00002526" data-href="OA/Paiche/manageWeihu.aspx" data-tab="车辆维护" title="车辆维护" hidefocus="true">车辆维护</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00002530" data-href="OA/Paiche/yongchechaxun.aspx" data-tab="用车查询" title="用车查询" hidefocus="true">用车查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00002529" data-href="OA/Paiche/yongchechuli.aspx" data-tab="用车处理" title="用车处理" hidefocus="true">用车处理</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00002527" data-href="OA/Paiche/yongcheShenQingchaxun.aspx" data-tab="用车申请" title="用车申请" hidefocus="true">用车申请</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00002528" data-href="OA/Paiche/yongcheshenpi.aspx" data-tab="用车审批" title="用车审批" hidefocus="true">用车审批</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00002525" data-href="OA/Paiche/manageCar.aspx" data-tab="参数管理" title="参数管理" hidefocus="true">参数管理</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00002222" data-href="OA/Paiche/linshidengji.aspx" data-tab="用车补登" title="用车补登" hidefocus="true">用车补登</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">短信管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="90009227" data-href="DuanXin/DuanXinGuangLi.aspx" data-tab="短信查询" title="短信查询" hidefocus="true">短信查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="90009228" data-href="DuanXin/DuanXinFaSongJiFa.aspx" data-tab="短信发送" title="短信发送" hidefocus="true">短信发送</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="90009229" data-href="DuanXin/DunaXinJieShou.aspx" data-tab="短信接收" title="短信接收" hidefocus="true">短信接收</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="90009225" data-href="DuanXin/MyJianQun.aspx" data-tab="群组管理" title="群组管理" hidefocus="true">群组管理</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">考勤管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00061920" data-href="OA/kaoqin/gongxiuchaxun.aspx" data-tab="工休查询" title="工休查询" hidefocus="true">工休查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00061820" data-href="OA/kaoqin/gongxiu.aspx" data-tab="工休申请" title="工休申请" hidefocus="true">工休申请</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">基础数据<span class="main-nav-more"></span></a>
+                                            <dl class="main-menu-child main-menu-lv3">
+                                                <dd class="main-menu-item main-menu-itemed">
+                                                    <a href="javascript:;" class="main-menu-item-op" data-id="00061223" data-href="OA/kaoqin/banciguanli.aspx" data-tab="班次管理" title="班次管理" hidefocus="true">班次管理</a>
+                                                </dd>
+                                                <dd class="main-menu-item main-menu-itemed">
+                                                    <a href="javascript:;" class="main-menu-item-op" data-id="00061222" data-href="OA/kaoqin/banduanguanli.aspx" data-tab="班段管理" title="班段管理" hidefocus="true">班段管理</a>
+                                                </dd>
+                                                <dd class="main-menu-item main-menu-itemed">
+                                                    <a href="javascript:;" class="main-menu-item-op" data-id="00061221" data-href="OA/kaoqin/JichuCanShuGuanli.aspx" data-tab="基础参数" title="基础参数" hidefocus="true">基础参数</a>
+                                                </dd>
+                                                <dd class="main-menu-item main-menu-itemed">
+                                                    <a href="javascript:;" class="main-menu-item-op" data-id="00061224" data-href="OA/kaoqin/jiejiariguanli.aspx" data-tab="节假日管理" title="节假日管理" hidefocus="true">节假日管理</a>
+                                                </dd>
+                                            </dl>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op clear-l" data-id="00061620" data-href="OA/kaoqin/kaoqinjieguo.aspx" data-tab="考勤结果" title="考勤结果" hidefocus="true">考勤结果</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00061726" data-href="OA/kaoqin/nianbaobiao.aspx" data-tab="年报表" title="年报表" hidefocus="true">年报表</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00061721" data-href="OA/kaoqin/paibanchaxun.aspx" data-tab="排班查询" title="排班查询" hidefocus="true">排班查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00061321" data-href="OA/kaoqin/paibanguanli.aspx" data-tab="排班管理" title="排班管理" hidefocus="true">排班管理</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00061322" data-href="OA/kaoqin/paibanshenhe.aspx" data-tab="排班审核" title="排班审核" hidefocus="true">排班审核</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00061724" data-href="OA/kaoqin/jiejiariguanli.aspx" data-tab="日志查询" title="日志查询" hidefocus="true">日志查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00061725" data-href="OA/kaoqin/yuebaobiao.aspx" data-tab="月报表" title="月报表" hidefocus="true">月报表</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">人事管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016511" data-href="OA/DangAn/DangAnList.aspx" data-tab="档案管理" title="档案管理" hidefocus="true">档案管理</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">文件管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016210" data-href="OA/WenJian/WenJianGuanLi.aspx" data-tab="我的文件" title="我的文件" hidefocus="true">我的文件</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016220" data-href="OA/WenJian/GongXiangWenJian.aspx" data-tab="共享文件" title="共享文件" hidefocus="true">共享文件</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">行文管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016103" data-href="OA/HOA/FileSearch.aspx" data-tab="行文查询" title="行文查询" hidefocus="true">行文查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016104" data-href="OA/HOA/FileimgFrame.htm" data-tab="行文统计" title="行文统计" hidefocus="true">行文统计</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016105" data-href="OA/HOA/FileChaoZuoJieMian.aspx" data-tab="来文管理" title="来文管理" hidefocus="true">来文管理</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016107" data-href="OA/HOA/FileJieShouJieMian.aspx" data-tab="来文查阅" title="来文查阅" hidefocus="true">来文查阅</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016108" data-href="OA/HOA/GongWenJieYue.aspx" data-tab="来文借阅" title="来文借阅" hidefocus="true">来文借阅</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">行政总值班<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016310" data-href="OA/XingZhengZhiBan/ZhiBanAnPai.aspx" data-tab="值班安排" title="值班安排" hidefocus="true">值班安排</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00016320" data-href="OA/XingZhengZhiBan/ZhiBanChaKan.aspx" data-tab="值班查看" title="值班查看" hidefocus="true">值班查看</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-tv"></i><cite>办公自动化</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 140px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item main-menu-itemed main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">费用管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00001106" data-href="JingJi/MenZhen/FeiYong/FeiYongDengJi.aspx" data-tab="门诊费用登记" title="门诊费用登记" hidefocus="true">门诊费用登记</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00001107" data-href="JingJi/MenZhen/FeiYong/FeiYongJiuCuo.aspx" data-tab="门诊费用纠错" title="门诊费用纠错" hidefocus="true">门诊费用纠错</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="10001107" data-href="JingJi/MenZhen/FeiYong/FyDzJC.aspx" data-tab="门诊纠错处理" title="门诊纠错处理" hidefocus="true">门诊纠错处理</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00001123" data-href="JingJi/MenZhen/FeiYong/FeiYongJieSuan.aspx" data-tab="门诊费用结算" title="门诊费用结算" hidefocus="true">门诊费用结算</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00001108" data-href="JingJi/MenZhen/FeiYong/FeiYongChongXiao.aspx" data-tab="门诊费用冲销" title="门诊费用冲销" hidefocus="true">门诊费用冲销</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00113009" data-href="JingJi/MenZhen/FeiYong/FeiYongBiaoZhunMX.aspx" data-tab="费用标准查询" title="费用标准查询" hidefocus="true">费用标准查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00001109" data-href="JingJi/MenZhen/FeiYong/FeiYongChaXun.aspx" data-tab="门诊费用查询" title="门诊费用查询" hidefocus="true">门诊费用查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00009601" data-href="JingJi/MenZhen/FeiYong/FeiYongMoBanAdd.aspx" data-tab="门诊费用模板" title="门诊费用模板" hidefocus="true">门诊费用模板</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-plus"></i><cite>门诊经济</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 185px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">住院档案管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00011003" data-href="JingJi/ZhuYuan/DangAn/ZYDangAnChaXun.aspx" data-tab="住院档案查询" title="住院档案查询" hidefocus="true">住院档案查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00113004" data-href="JingJi/ZhuYuan/DangAn/GeRenChuYuanXinXi.aspx" data-tab="住院出院病人查询" title="住院出院病人查询" hidefocus="true">住院出院病人查询</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">住院入出管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00015103" data-href="JingJi/ZhuYuan/chuangweiguanli/bingrenzhaohuisfc.aspx" data-tab="住院召回病人" title="住院召回病人" hidefocus="true">住院召回病人</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1 main-menu-itemed">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">住院费用管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00013001" data-href="JingJi/ZhuYuan/FeiYong/FeiYong.aspx" data-tab="住院费用记账" title="住院费用记账" hidefocus="true">住院费用记账</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00013002" data-href="JingJi/ZhuYuan/FeiYong/FeiYongJiuCuo.aspx" data-tab="住院费用纠错" title="住院费用纠错" hidefocus="true">住院费用纠错</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="10013100" data-href="JingJi/ZhuYuan/FeiYong/FyDzJC.aspx" data-tab="住院纠错申请" title="住院纠错申请" hidefocus="true">住院纠错申请</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00013005" data-href="JingJi/ZhuYuan/FeiYong/ChaXun.aspx" data-tab="住院费用查询" title="住院费用查询" hidefocus="true">住院费用查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00013006" data-href="JingJi/ZhuYuan/FeiYong/ZhuYuanFeiYongQingDan.aspx" data-tab="住院费用清单" title="住院费用清单" hidefocus="true">住院费用清单</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00013007" data-href="JingJi/MenZhen/FeiYong/FeiYongMoBanAdd.aspx?MoKuaiID=00013007" data-tab="门诊住院费用模板" title="门诊住院费用模板" hidefocus="true">门诊住院费用模板</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00013008" data-href="JingJi/ZhuYuan/YuJiaoJin/ZhuYuanCuiKuanTongJi.aspx" data-tab="住院费用催缴" title="住院费用催缴" hidefocus="true">住院费用催缴</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00013010" data-href="JingJi/ZhuYuan/FeiYong/FeiYongDerate/DerateList.aspx" data-tab="住院费用减免" title="住院费用减免" hidefocus="true">住院费用减免</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-flask"></i><cite>住院经济</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 320px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item main-menu-itemed main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">急诊管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00008510" data-href="LingChuang/ShuYe/ChuFangShuYeGuanLif.aspx" data-tab="输液执行" title="输液执行" hidefocus="true">输液执行</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-heartbeat"></i><cite>门诊临床</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 365px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item main-menu-itemed main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">药房发药管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00009330" data-href="LingChuang/YiZhu/BingQuFaYaoDaYin.aspx" data-tab="住院医嘱发药" title="住院医嘱发药" hidefocus="true">住院医嘱发药</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">药品查询<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00009392" data-href="YaoPin/YaoFangGuanLi/YaoFangYaoPinDiXianChaXun.aspx" data-tab="药房药品库存查询" title="药房药品库存查询" hidefocus="true">药房药品库存查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00113020" data-href="YaoKu/YaoFangGuanLi/yaofangrkselect.aspx" data-tab="药房入库查询" title="药房入库查询" hidefocus="true">药房入库查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00009340" data-href="YaoPin/YaoFangGuanLi/YaoFangYaoPinXiaoShouChaXun.aspx" data-tab="药品销售查询" title="药品销售查询" hidefocus="true">药品销售查询</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-flask"></i><cite>药品管理</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 410px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item main-menu-itemed main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">住院护理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="90009022" data-href="jingji/zhuyuan/feiyong/feiyongmoban.aspx" data-tab="科室常用费用" title="科室常用费用" hidefocus="true">科室常用费用</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00028001" data-href="JingJi/ZhuYuan/ChuangWeiGuanLi/ChuangWeiLieBiao.aspx" data-tab="住院护理工作站" title="住院护理工作站" hidefocus="true">住院护理工作站</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">住院诊疗<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="90009112" data-href="LingChuang/JiBingZhenDuan/zhenduanmoban.aspx" data-tab="诊断模板" title="诊断模板" hidefocus="true">诊断模板</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="02027022" data-href="LingChuang/YiZhu/XiuGaiShiJianPiZhun.aspx" data-tab="医嘱时间修改" title="医嘱时间修改" hidefocus="true">医嘱时间修改</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00027007" data-href="LingChuang/GanRanBaoKa/GanRanBaoKaChaXun.aspx" data-tab="院感管理" title="院感管理" hidefocus="true">院感管理</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00027006" data-href="ShouShuGuanLi/HuiZhenShouLiBingRenChuLi.aspx" data-tab="会诊工作站" title="会诊工作站" hidefocus="true">会诊工作站</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="90032022" data-href="ShouShuGuanLi/ShouShuAnPaiDaYin.aspx?IsChaXun=1" data-tab="手术安排查询" title="手术安排查询" hidefocus="true">手术安排查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="90031021" data-href="LingChuang/JiBingZhenDuan/ManXinBing/ZhuYuanMxbChaXun.aspx" data-tab="住院疾病查询" title="住院疾病查询" hidefocus="true">住院疾病查询</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">病区管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00026011" data-href="JingJi/ZhuYuan/ChuangWeiGuanLi/SettingBedf.aspx" data-tab="住院床位设定" title="住院床位设定" hidefocus="true">住院床位设定</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="1002601" data-href="JingJi/ZhuYuan/feiyong/YuErDiXian.aspx" data-tab="住院余额设定" title="住院余额设定" hidefocus="true">住院余额设定</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00026003" data-href="XiTong/YiLiaoZu/Default.aspx" data-tab="医疗组设置" title="医疗组设置" hidefocus="true">医疗组设置</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">医嘱管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00113011" data-href="LingChuang/YiZhu/MaZuiYongYaoYiZhuRpt.aspx?QiXian=3" data-tab="麻醉用药医嘱" title="麻醉用药医嘱" hidefocus="true">麻醉用药医嘱</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00021013" data-href="LingChuang/InfusionSolution/HuShiQianShou.aspx" data-tab="输液签收" title="输液签收" hidefocus="true">输液签收</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00021005" data-href="LingChuang/YiZhu/ZhuYuanShuYe.aspx" data-tab="住院输液登记" title="住院输液登记" hidefocus="true">住院输液登记</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00021006" data-href="LingChuang/YiZhu/ZhongYaoYiZhu.aspx" data-tab="中药医嘱" title="中药医嘱" hidefocus="true">中药医嘱</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00021008" data-href="LingChuang/YiZhu/YiZhuChaXun.aspx" data-tab="用药医嘱查询" title="用药医嘱查询" hidefocus="true">用药医嘱查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00021007" data-href="LingChuang/YiZhu/QiTaZhuYuanYiZhuChaXun.aspx" data-tab="住院医嘱查询" title="住院医嘱查询" hidefocus="true">住院医嘱查询</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">住院病历<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00025001" data-href="LingChuang/ZhuYuanBingLi/BingLiLeiBieGuanLi/BingLiLeiBieGuanLi.aspx" data-tab="住院病历管理" title="住院病历管理" hidefocus="true">住院病历管理</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00025004" data-href="jingji/zhuyuan/feiyong/daishenhebingrencunxun.aspx" data-tab="医保费用审核" title="医保费用审核" hidefocus="true">医保费用审核</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00025002" data-href="LingChuang/ZhenLiaoHuLi/ZhuYuanBingLiChaXun.aspx" data-tab="住院病历查询" title="住院病历查询" hidefocus="true">住院病历查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00025005" data-href="LingChuang/JiBingZhenDuan/ZhuYuan/qzetyy/BingRenZhenDuanChaXun.aspx" data-tab="住院病人诊断查询" title="住院病人诊断查询" hidefocus="true">住院病人诊断查询</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00020221" data-href="W_EMR/AspCode/Templater/IE8Fxied.html?laiyuan=zhuyuan" data-tab="住院病历模板管理" title="住院病历模板管理" hidefocus="true">住院病历模板管理</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="00025008" data-href="LingChuang/BingAn/BaFeiYongDuiYing.aspx" data-tab="病案费用对应" title="病案费用对应" hidefocus="true">病案费用对应</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-hotel"></i><cite>住院临床</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 500px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="00031002" data-href="Common/Reports/ReportFramework.aspx" data-tab="报表浏览" title="报表浏览" hidefocus="true">报表浏览</a></li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-pie-chart"></i><cite>统计报表</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 545px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="90009119" data-href="ZiZhuChaXun/SMEY/ZhuYuanYongYaoBiLi.aspx" data-tab="住院在院病人药品比例" title="住院在院病人药品比例" hidefocus="true">住院在院病人药品比例</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="00031014" data-href="JingJiChaXun/MenZhen/ZhiDingXiangMuTongJiFrame.aspx" data-tab="项目统计" title="项目统计" hidefocus="true">项目统计</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="00031018" data-href="JingJiChaXun/MenZhen/MenZhenGongZuoLiangTongJi.aspx" data-tab="门诊科室工作量查询" title="门诊科室工作量查询" hidefocus="true">门诊科室工作量查询</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="00031019" data-href="JingJiChaXun/ZhuYuan/ZhuYuanGongZuoLiang.aspx" data-tab="住院科室工作量查询" title="住院科室工作量查询" hidefocus="true">住院科室工作量查询</a></li>
+                            </ul>
+                        </div><a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-tv"></i><cite>综合查询</cite></a>
+                    </li>
+                    <li class="main-nav-item">
+                        <div class="main-nav-child" style="top: 590px;">
+                            <ul class="main-menu main-menu-tree" lay-shrink="onlyone">
+                                <li class="main-menu-item main-menu-itemed main-menu-lv1">
+                                    <a href="javascript:;" class="main-menu-item-dir" hidefocus="true">基础字典管理<span class="main-nav-more"></span></a>
+                                    <dl class="main-menu-child main-menu-lv2">
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="1110000002" data-href="W_HliZhiLiang/AspCode/ZhiKongZuManage/ZhiKongZuList.aspx" data-tab="质控组设置" title="质控组设置" hidefocus="true">质控组设置</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="1110000001" data-href="W_HliZhiLiang/AspCode/ZhiLiangJianChaZiDian/ZiDianMain.aspx" data-tab="质量检查字典设置" title="质量检查字典设置" hidefocus="true">质量检查字典设置</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="1110000003" data-href="W_HliZhiLiang/AspCode/Zhikjianchadan/Default.aspx" data-tab="护理质量检查表单制定" title="护理质量检查表单制定" hidefocus="true">护理质量检查表单制定</a>
+                                        </dd>
+                                        <dd class="main-menu-item main-menu-itemed">
+                                            <a href="javascript:;" class="main-menu-item-op" data-id="1110000004" data-href="W_HliZhiLiang/AspCode/JianChaKeShiManage/KeShiMain.aspx" data-tab="护理质量检查科室设置" title="护理质量检查科室设置" hidefocus="true">护理质量检查科室设置</a>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op clear-l" data-id="1010000004" data-href="ZhuChengXu/Blank.htm" data-tab="计划管理" title="计划管理" hidefocus="true">计划管理</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="101000019" data-href="ZhuChengXu/Blank.htm" data-tab="护理质量检查" title="护理质量检查" hidefocus="true">护理质量检查</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="101000006" data-href="ZhuChengXu/Blank.htm" data-tab="风险管理" title="风险管理" hidefocus="true">风险管理</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="1010000005" data-href="ZhuChengXu/Blank.htm" data-tab="护理质量查询" title="护理质量查询" hidefocus="true">护理质量查询</a></li>
+                                <li class="main-menu-item  main-menu-lv1"><a href="javascript:;" class="main-menu-item-op" data-id="1010000006" data-href="ZhuChengXu/Blank.htm" data-tab="护理质量报表" title="护理质量报表" hidefocus="true">护理质量报表</a></li>
+                            </ul>
+                        </div>
+                        <a class="main-nav-tri" href="javascript:;" hidefocus="true"><i class="fa fa-shield"></i><cite>护理质量管理</cite></a>
+                    </li>
+                </ul>
+            </div>
+            <span class="main-company-icon"></span>
+        </div>
+
+        <!--内容部分-->
+        <div class="main-body">
+            <div class="main-tab" lay-filter="mainTab" lay-allowclose="true">
+                <ul class="main-tab-title">
+                    <li class="main-this" lay-id="home">首页</li>
+                </ul>
+                <div class="main-tab-content">
+                    <div class="main-tab-item main-show">
+                        欢迎！
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--底部版权-->
+        <div class="main-footer">
+            <p>Copyright 2007-2019 弘扬软件</p>
+        </div>
+        <script src="Script/jquery-1.12.4.min.js"></script>
+        <script src="Content/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+        <script src="main.js"></script>
+        <script type="text/javascript">
+            var logginUrl = './Login.aspx'; // 登陆页面(退出操作)
+            var deptSelectUrl = './DeptSelect.aspx'; // 部门选择页面（重选部门操作）
+            var HandlerUrl = "ashx/IndexHandler.ashx"; //请求处理程序路径
+            var app;
+            $(function () {
+                resetSize();
+                $(window).resize(function () {
+                    resetSize();
+                });
+                app = initIndexPage();
+            });
+            /**
+             * 滚动条设置
+             */
+            function resetSize() {
+                $('.main-side-scroll').height(document.documentElement.clientHeight - 70);
+                $('.main-side-scroll').niceScroll(
+                    {
+                        cursoropacitymin: 0,
+                        cursoropacitymax: 0,
+                        horizrailenabled: false
+                    });
+            }
+            /**
+             * 添加Tab项
+             * @param id
+             * @param title
+             * @param href
+             */
+            function tabShow(id, title, href) {
+                if (app) {
+                    app.tabShow({
+                        id: id,
+                        href: href,
+                        title: title,
+                        content: href
+                    });
+                }
+            }
+            /**
+             * 删除Tab项
+             * @param id
+             */
+            function tabDelete(id) {
+                if (app) {
+                    app.tabDelete(id);
+                }
+            }
+            /**
+             * 切换Tab项
+             * @param id
+             */
+            function tabChange(id) {
+                if (app) {
+                    app.tabChange(id);
+                }
+            }
+            /**
+             * 修改Tab项
+             * @param id
+             * @param title
+             * @param href
+             */
+            function tabUpdate(id, title, href) {
+                if (app) {
+                    app.tabUpdate({
+                        id: id,
+                        href: href,
+                        title: title,
+                        content: href
+                    });
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
